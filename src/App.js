@@ -14,7 +14,7 @@ class App extends Component {
                 <Router history={hist}>
                     <Fragment>
                       <Route exact path='/' component={Home} />
-                      <Route exact path='/gitRepositories/:viaLogin' component={GitRepositories} />
+                      <Route exact path='/gitRepositories' component={GitRepositories} />
                       <Route exact path='/log-in' component={LogIn} />
                       <Route exact path='/sign-up' component={SignUp} />
                     </Fragment>

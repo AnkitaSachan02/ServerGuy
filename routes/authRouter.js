@@ -32,7 +32,7 @@ router.post("/sign-up", async (req,res) => {
             }
         })
     } catch(err){
-        console.log("error in sign up>>>>>> ",err);
+       // do nothing
     }
 });
 
@@ -60,7 +60,7 @@ router.post("/login", async (req,res) => {
             }
         })
     } catch(err){
-        console.log("error in sign up>>>>>> ",err);
+        // do nothing
     }
 });
 

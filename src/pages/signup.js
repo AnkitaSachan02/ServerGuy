@@ -50,7 +50,7 @@ class SignUp extends Component {
                     alert(res.error);
                 } else {
                     localStorage.setItem("username", email || username);
-                    this.props.history.push("/gitRepositories");
+                    this.props.history.push(`/gitRepositories/${email}`);
                 }
             });
     }
@@ -64,7 +64,7 @@ class SignUp extends Component {
                         <input onChange={this.onChange} type="text" name="username" placeholder="Username" />
                         <input onChange={this.onChange} type="text" name="email" placeholder="E-mail" />
                         <input onChange={this.onChange} type="password" name="password" placeholder="Password" />
-                        <input onChange={this.onChange} onSubmit={this.onSubmit} type="submit" name="signup_submit" value="Sign me up" />
+                        <input onChange={this.onChange} onClick={this.onSubmit} type="submit" name="signup_submit" value="Sign me up" />
                     </div>
                 </div>
             </div>

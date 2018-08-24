@@ -34,8 +34,7 @@ class GitRepositories extends Component {
     Apicaller(this.state.topic, config.gitUrl)
       .then(res => {
         if (res.hasOwnProperty("item")) {
-          this.state.list = [];
-          this.state.list = res.item.map(elem => {
+          let list = res.item.map(elem => {
             return (
               <div>
                 <div style={{ clear: "both" }}>
@@ -48,7 +47,7 @@ class GitRepositories extends Component {
                     target="_blank"
                     className="downloadLink"
                   >
-                    <img src={"/images/download.png"} />
+                    <img alt="download" src={"/images/download.png"} />
                   </a>
                   <a
                     title="Open Repo"
@@ -56,21 +55,22 @@ class GitRepositories extends Component {
                     target="_blank"
                     className="openLink"
                   >
-                    <img src={"/images/link.png"} />
+                    <img alt={"open"} src={"/images/link.png"} />
                   </a>
                 </div>
                 <br />
               </div>
             );
           });
-          this.setState(this.state);
+          this.setState({list});
         }
       })
       .catch(err => {
-        console.log("error");
+        // do nothing
       });
   };
   render() {
+    let { viewSet, list } = this.state;
     return (
       <div className="App">
         <form
@@ -88,8 +88,8 @@ class GitRepositories extends Component {
           />
           <input type="submit" defaultValue={"Submit"} />
         </form>
-        <div className="listSet" style={this.state.viewSet}>
-          <div className="linkSet">{this.state.list}</div>
+        <div className="listSet" style={ viewSet }>
+          <div className="linkSet">{ list }</div>
         </div>
       </div>
     );

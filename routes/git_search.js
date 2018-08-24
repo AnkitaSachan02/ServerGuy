@@ -21,7 +21,7 @@ router.get("/search", async function(req, res, next) {
     console.log(JSON.parse(result).items.length);
     res.send({ item: JSON.parse(result).items });
   } catch (err) {
-    console.log("errpr", err);
+    // do nothing
   }
 });
 
