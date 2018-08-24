@@ -1,0 +1,21 @@
+.listSet{
+    display: inline-block;
+      border: 1px solid;
+      width: 50%;
+  }
+  
+  .name{
+    display: inline-block;
+    float: left;
+    margin: 10px;
+  }
+  
+  .downloadLink{
+  float:right;
+  margin: 10px;
+  }
+  
+  .openLink{
+    float:right;
+    margin: 10px;
+  }
