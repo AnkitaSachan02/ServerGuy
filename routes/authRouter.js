@@ -8,10 +8,10 @@ router.get("/redirect", passport.authenticate("google",{ session: false }), (req
   res.redirect(`http://localhost:3000/gitRepositories/${req.user.email}`);
 });
 
-router.get( "/facebook", passport.authenticate("facebook"));
+router.get( "/facebook", passport.authenticate("facebook", { scope: ['email'] }));
 
 router.get("/fredirect", passport.authenticate("facebook",{ session: false }), (req, res) => {
-  res.redirect(`http://localhost:3000/gitRepositories/`);
+  res.redirect(`http://localhost:3000/gitRepositories/${req.user.email}`);
 });
 
 router.post("/sign-up", async (req,res) => {

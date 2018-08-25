@@ -47,10 +47,25 @@ passport.use(new facebookStrategy({
 	clientID: "542899819495663",
 	clientSecret: "2951dbc2d13c4e0e2ac6e34b8c487e05", 
 }, async function(accessToekn, refreshToken, profile, done){
-	console.log("this is profile", JSON.stringify(profile));
     try{
-        let user = {}
-        done(null, user);
+        let { emails, id } = profile;
+        let email = emails && emails[0];
+        email = email && email.value;
+        let query = `select * from user where username="${id}" or email="${email}"`;
+        await connection.query(query,async function (error, rows, fields) {
+            if (error) throw error;
+            if( !rows || !rows.length ){
+                let q = `INSERT INTO user (username, email, password ) VALUES ("${id}", "${email}", "${id}")`;
+                await connection.query(q, function (err, result) {
+                    if (err) throw err;
+                })
+            }
+            let user= {
+                id,
+                email
+            };
+            done(null, user);
+        })
     }catch(error){
         done(error, null);
     }

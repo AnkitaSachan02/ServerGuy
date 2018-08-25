@@ -18,7 +18,6 @@ router.get("/search", async function(req, res, next) {
         "User-Agent": ua
       }
     });
-    console.log(JSON.parse(result).items.length);
     res.send({ item: JSON.parse(result).items });
   } catch (err) {
     // do nothing
