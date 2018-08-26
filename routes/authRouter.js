@@ -11,7 +11,7 @@ router.get("/redirect", passport.authenticate("google",{ session: false }), (req
 router.get( "/facebook", passport.authenticate("facebook", { scope: ['email'] }));
 
 router.get("/fredirect", passport.authenticate("facebook",{ session: false }), (req, res) => {
-  res.redirect(`http://localhost:3000/gitRepositories/${req.user.email}`);
+  res.redirect(`http://localhost:3000/gitRepositories/${req.user.id}`);
 });
 
 router.post("/sign-up", async (req,res) => {

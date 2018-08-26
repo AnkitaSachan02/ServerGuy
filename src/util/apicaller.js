@@ -1,9 +1,9 @@
 import config from "../config/config";
 
-export const Apicaller = (search, callPath) => {
+export const Apicaller = (search, user, callPath) => {
   return new Promise((res, rej) => {
     const searchTopic = `${config.url}${callPath}?params=`;
-    const params = JSON.stringify({ searchTopic: search });
+    const params = JSON.stringify({ searchTopic: search, user });
     fetch(searchTopic + params, {
       method: "GET",
       headers: {

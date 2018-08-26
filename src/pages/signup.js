@@ -49,7 +49,6 @@ class SignUp extends Component {
                 if(res.error){
                     alert(res.error);
                 } else {
-                    localStorage.setItem("username", email || username);
                     this.props.history.push(`/gitRepositories/${email}`);
                 }
             });

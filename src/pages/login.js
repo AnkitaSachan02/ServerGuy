@@ -43,7 +43,6 @@ class LogIn extends Component {
                 if(res.error){
                     alert(res.error);
                 } else {
-                    localStorage.setItem("username", username);
                     this.props.history.push(`/gitRepositories/${username}`);
                 }
             });

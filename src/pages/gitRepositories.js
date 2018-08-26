@@ -17,21 +17,40 @@ class GitRepositories extends Component {
   }
 
   componentWillMount(){
-      let email = localStorage.getItem("username") || this.props.match.params.email;
-      if(!email){
-          localStorage.setItem("username", email);
-      } else if(!email) {
-          this.props.history.push("/");
-      }
+    let email = this.props.match.params.email;
+    this.user = email;
+    if(!this.user){
+      this.props.history.push("/");
+    }
   }
 
   typeSearch = e => {
     this.setState({ topic: e.target.value });
   };
 
+  showHistory = () => {
+    fetch('http://localhost:8081/git/search-history',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user: this.user })
+        })
+            .then(res=>res.json())
+            .then(res=>{
+                if(res.error){
+                    alert(res.error);
+                } else {
+                  let searches = res.searches.split(", ");
+                  console.log("searches>>>>>>.",this.searches);
+                  // do work here
+                }
+            });
+  }
+
   searchData = e => {
     e.preventDefault();
-    Apicaller(this.state.topic, config.gitUrl)
+    Apicaller(this.state.topic, this.user, config.gitUrl)
       .then(res => {
         if (res.hasOwnProperty("item")) {
           let list = res.item.map(elem => {
@@ -70,7 +89,7 @@ class GitRepositories extends Component {
       });
   };
   render() {
-    let { viewSet, list } = this.state;
+    let { viewSet, list, topic } = this.state;
     return (
       <div className="App">
         <form
@@ -81,7 +100,7 @@ class GitRepositories extends Component {
           <input
             type="text"
             id="git-search-box"
-            value={this.state.topic}
+            value={topic}
             onChange={e => {
               this.typeSearch(e);
             }}
@@ -91,6 +110,7 @@ class GitRepositories extends Component {
         <div className="listSet" style={ viewSet }>
           <div className="linkSet">{ list }</div>
         </div>
+        <input type="submit" onClick={this.showHistory} value="Show History" />
       </div>
     );
   }
