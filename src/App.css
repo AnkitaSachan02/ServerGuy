@@ -192,3 +192,7 @@ button.social-signin.twitter {
 button.social-signin.google {
   background: #DD4B39;
 }
+
+.listStyle{
+  list-style-type : none;
+}

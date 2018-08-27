@@ -23,13 +23,13 @@ class LogIn extends Component {
             </h1>
             <div>
                 <Link to="/log-in">
-                    <button class="social-signin facebook">Log in</button>
+                    <button className="social-signin facebook">Log in</button>
                 </Link>
             </div>
             <div style={{border:'1px solid black', width: '30%', marginBottom: '20px', marginLeft: '35%'}}></div>
             <div>
                 <Link to="/sign-up">
-                    <button class="social-signin google">Sign up</button>
+                    <button className="social-signin google">Sign up</button>
                 </Link>
             </div>    
             </div>    

@@ -58,7 +58,7 @@ class SignUp extends Component {
         return(
             <div>
                 <div id="login-box" style={{width: "340px"}}>
-                    <div class="left">
+                    <div className="left">
                         <h1>Sign up</h1>
                         <input onChange={this.onChange} type="text" name="username" placeholder="Username" />
                         <input onChange={this.onChange} type="text" name="email" placeholder="E-mail" />

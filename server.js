@@ -16,4 +16,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/auth", authRouter);
 app.use("/git", gitRouter);
 
-app.listen(8081);
+app.listen(8081,() => {
+    console.log("Listening on port 8081");
+});

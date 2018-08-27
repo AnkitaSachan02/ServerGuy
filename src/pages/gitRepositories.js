@@ -7,6 +7,7 @@ class GitRepositories extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searches: [],
       topic: "",
       list: [],
       viewSet: {
@@ -42,8 +43,7 @@ class GitRepositories extends Component {
                     alert(res.error);
                 } else {
                   let searches = res.searches.split(", ");
-                  console.log("searches>>>>>>.",this.searches);
-                  // do work here
+                  this.setState({searches});
                 }
             });
   }
@@ -53,9 +53,9 @@ class GitRepositories extends Component {
     Apicaller(this.state.topic, this.user, config.gitUrl)
       .then(res => {
         if (res.hasOwnProperty("item")) {
-          let list = res.item.map(elem => {
+          let list = res.item.map((elem, key) => {
             return (
-              <div>
+              <div key={key}>
                 <div style={{ clear: "both" }}>
                   <div className="name">{elem.name}</div>
                   <a
@@ -89,7 +89,7 @@ class GitRepositories extends Component {
       });
   };
   render() {
-    let { viewSet, list, topic } = this.state;
+    let { viewSet, list, topic, searches } = this.state;
     return (
       <div className="App">
         <form
@@ -108,9 +108,18 @@ class GitRepositories extends Component {
           <input type="submit" defaultValue={"Submit"} />
         </form>
         <div className="listSet" style={ viewSet }>
+          <input type="submit" onClick={this.showHistory} value="Show History" />
+          <div>
+            <ul className="listStyle">
+             {searches.map((data, key)=>{
+                 return (
+                  <li key={key}>{data}</li>
+                );
+             })}
+            </ul>
+          </div>
           <div className="linkSet">{ list }</div>
         </div>
-        <input type="submit" onClick={this.showHistory} value="Show History" />
       </div>
     );
   }
